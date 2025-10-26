@@ -7,11 +7,12 @@ function App() {
     <>
       <Navbar title="Text" aboutText="About Textutils" />
       <div className="container my-3r ">
-      <TextForm heading ="Enter text here"/>
+      <TextForm heading ="Enter text here to analyze"/>
       </div>
     </>
   );
 }
+
 
 export default App;
  
