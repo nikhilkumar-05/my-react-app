@@ -11,14 +11,14 @@ export default function About() {
   const toggleStyle = () => {
     if (mystyle.color === 'black') {
       setMystyle({
-        color: 'green',
+        color: 'white',
         backgroundColor: 'black',
       });
       setBtnText('Enable Light Mode');
     } else {
       setMystyle({
-        color: 'black',
-        backgroundColor: 'white ',
+        color: ' white',
+        backgroundColor: 'white',
       });
       setBtnText('Enable Dark Mode');
     }

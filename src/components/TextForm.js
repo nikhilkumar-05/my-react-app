@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import PropTypes from 'prop-types'; 
 export default function TextForm(props) {
     const handleUpClick =()=>{
         // console.log("Uppercase was clicked" +text)
@@ -16,7 +16,7 @@ export default function TextForm(props) {
         setText(newTexttt)
     }
     const handleCopyText =()=>{
-        var text =document.getElementById("mybox");
+        const text =document.getElementById("mybox");
         text.select();
         text.setSelectionRange(0,9999);
         navigator.clipboard.writeText(text.value);
@@ -35,10 +35,16 @@ export default function TextForm(props) {
     // setText("new text"); // correct way to change the state
     return (
     <>
-        <div className="Container">
+        <div className={`container ${props.mode === 'dark' ? 'text-light' : 'text-dark'}`}>
             <h1>{props.heading} </h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="mybox" rows="8"></textarea>
+                <textarea
+            className={`form-control ${props.mode === 'dark' ? 'bg-dark text-light' : ''}`} // FIX: Added conditional classes for dark background and light text in textarea when in dark mode
+            value={text}
+            onChange={handleOnChange}
+            id="mybox"
+            rows="8">
+            </textarea>
             </div>
             <button className="btn btn-success mx-1" onClick={handleUpClick}>Convert to UPPERCASE</button>
             <button className="btn btn-success mx-1" onClick={handleLoClick}>Convert to lowercase</button>
@@ -48,12 +54,12 @@ export default function TextForm(props) {
 
 
         </div>
-        <div className="container my-3">
+       <div className={`container my-3 ${props.mode === 'dark' ? 'text-light' : 'text-dark'}`}>
             <h2>Your text summary</h2>
             <p>{text.trim()===""?0:text.trim().split(/\s+/).length}words and {text.length} characters</p>
             <p>{0.08 * text.split(" ").length -0.08} minutes reading time </p>
             <h3>Preview</h3>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Enter Something in the textbox to preview"}</p>
         </div>
         </>
     ) 
